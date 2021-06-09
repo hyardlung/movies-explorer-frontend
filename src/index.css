@@ -1,13 +1,40 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('./vendor/normalize.css');
+@import url('./vendor/fonts/fonts.css');
+
+:root {
+  /* 50 оттенков серого */
+  --primary-bg-color: #202020;
+  --secondary-bg-color: #272727;
+  --tertiary-bg-color: #303030;
+  --quaternary-bg-color: #2F2F2F;
+  /* переменные для текста и шрифтов */
+  --light-text-color: #fff;
+  --lightgray-text-color: #8B8B8B;
+  --dark-text-color: #000;
+  --primary-ff-stack: Inter, Arial, Helvetica, sans-serif;
+  --medium-fw: 500;
+  /* цвета акцентов */
+  --primary-accent-color: #3DDC84;
+  --secondary-accent-color: #4285F4;
+  /* цвета горизонтальных линий */
+  --light-lines-color: #DADADA;
+  --dark-lines-color: #424242;
+  /* скругления */
+  --base-border-radius: 10px;
+  --login-button-border-radius: 3px;
+  --auth-buttons-border-radius: 3px;
+  --account-button-border-radius: 6px;
+  --search-field-border-radius: 9px;
+  /* размеры контейнеров и медиазапросы */
+  --desktop-container: 1240px;
+  --tablet-max-width: 1199px;
+  --tablet-min-width: 768px;
+  --mobile-max-width: 767px;
+  --mobile-min-width: 320px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#root {
+  font-family: var(--primary-ff-stack);
+  color: var(--light-text-color);
+  background-color: var(--primary-bg-color);
 }
