@@ -9,9 +9,9 @@
   background-color: var(--tertiary-bg-color);
   border-radius: var(--base-border-radius);
   text-decoration: none;
-  transition: all .2s;
+  transition: all .3s;
 }
 
 .buttoned-link:hover {
-  background-color: var(--dark-lines-color);
+  filter: invert(10%);
 }

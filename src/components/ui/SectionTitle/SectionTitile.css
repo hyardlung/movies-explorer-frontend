@@ -1,0 +1,11 @@
+.section-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: var(--regular-fw);
+}
+
+.section-title__underline {
+  margin-top: 24px;
+  height: 1px;
+  background-color: var(--light-lines-color);
+}

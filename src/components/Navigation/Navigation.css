@@ -1,0 +1,14 @@
+.navigation {
+}
+
+.navigation__list {
+  display: flex;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/*.navigation__item {*/
+/*  margin-right: 16px;*/
+/*}*/

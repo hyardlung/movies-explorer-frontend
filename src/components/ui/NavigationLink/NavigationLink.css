@@ -1,0 +1,10 @@
+.navigation-link {
+  display: inline-block;
+  color: var(--light-text-color);
+  font-size: var(--nav-link--text-size);
+  text-decoration: none;
+}
+
+.navigation-link_active {
+  font-weight: var(--medium-fw);
+}

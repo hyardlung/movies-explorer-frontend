@@ -1,0 +1,52 @@
+.about-project {
+  padding: 110px 50px;
+}
+
+.about-project__description {
+  margin-top: 70px;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.about-project__column {
+  max-width: 550px;
+}
+
+.about-project__subtitle {
+  margin: 0;
+  font-size: 20px;
+}
+
+.about-project__text {
+  font-size: 14px;
+  margin-top: 30px;
+}
+
+.about-project__scale {
+  margin-top: 100px;
+  display: grid;
+  grid-template-rows: 36px 36px;
+  grid-template-columns: 1fr 4fr;
+  place-items: stretch;
+  text-align: center;
+  font-size: 14px;
+  line-height: 36px;
+}
+
+.about-project__back-point {
+  margin: 0;
+  color: var(--dark-text-color);
+  background-color: var(--primary-accent-color);
+}
+
+.about-project__front-point {
+  margin: 0;
+  color: var(--light-text-color);
+  background-color: var(--tertiary-bg-color);
+}
+
+.about-project__col-caption {
+  margin-top: 5px;
+  color: var(--lightgray-text-color);
+}
