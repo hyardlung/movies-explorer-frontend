@@ -1,0 +1,159 @@
+.about-me {
+  padding: 110px 70px;
+}
+
+.about-me__container {
+  box-sizing: border-box;
+  max-width: var(--desktop-container);
+  margin: 0 auto;
+}
+
+.bio {
+  margin-top: 66px;
+  display: grid;
+  grid-template-columns: 1fr minmax(min-content, max-content);
+  gap: 49px;
+  grid-template-areas:
+    "description photo"
+}
+
+.bio__description {
+  max-width: 600px;
+  display: grid;
+  grid-template-rows: min-content 1fr 3fr min-content;
+  grid-area: description;
+  grid-template-areas:
+    "name"
+    "job"
+    "text"
+    "links"
+}
+
+.bio__name {
+  margin: 0;
+  font-size: 48px;
+  line-height: 1.16;
+  font-weight: var(--regular-fw);
+  grid-area: name;
+}
+
+.bio__job {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.11;
+  font-weight: var(--medium-fw);
+  grid-area: job;
+  align-self: center;
+}
+
+.bio__text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.56;
+  grid-area: text;
+}
+
+.bio__links {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  align-items: end;
+  grid-area: links;
+}
+
+.bio__external-link {
+  margin-right: 20px;
+  font-size: 14px;
+  font-weight: var(--medium-fw);
+  color: var(--light-text-color);
+  text-decoration: none;
+  transition: all .3s;
+}
+
+.bio__external-link:hover {
+  opacity: .7;
+  transition: all .3s;
+}
+
+.bio__photo {
+  display: block;
+  max-width: 270px;
+  object-fit: cover;
+  border-radius: var(--base-border-radius);
+  grid-area: photo;
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .about-me {
+    padding: 90px 50px;
+  }
+
+  .bio__description {
+    grid-template-rows: min-content 1fr 6fr min-content;
+  }
+
+  .bio__name {
+    /*font-size: 37px;*/
+    font-size: calc( (100vw - 320px)/(768 - 320) * (37 - 30) + 30px);
+    line-height: 1.3;
+  }
+
+  .bio__job {
+    font-size: 12px;
+  }
+
+  .bio__text {
+    margin-top: 10px;
+    font-size: 12px;
+  }
+
+  .bio__photo {
+    max-width: 255px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .about-me {
+    padding: 67px 14px;
+  }
+
+  .bio {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "photo"
+      "description"
+  }
+
+  .bio__description {
+    grid-template-rows: min-content 1fr 3fr min-content;
+  }
+
+  .bio__links {
+    margin-top: 38px;
+  }
+
+  .bio__photo {
+    max-width: 292px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .bio {
+    gap: 30px;
+  }
+
+  .bio__text {
+    margin-top: 12px;
+    font-size: 11px;
+    line-height: 1.47;
+  }
+
+
+
+  .bio__external-link {
+    margin-right: 27px;
+  }
+}

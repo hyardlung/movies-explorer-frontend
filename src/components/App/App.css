@@ -1,5 +1,5 @@
 .app {
   margin: 0 auto;
-  max-width: var(--desktop-container);
+  /*max-width: var(--desktop-container);*/
   min-height: 100vh;
 }

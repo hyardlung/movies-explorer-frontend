@@ -3,16 +3,25 @@ import ButtonedLink from '../ui/ButtonedLink/ButtonedLink';
 
 import './NavTab.css';
 
-const NavTab = ({link, heading}) => {
+const NavTab = ({
+                  links = [],
+                  className = ''
+}) => {
   return (
       <nav className="nav-tab">
-        <ul className="nav-tab__list">
-          <ButtonedLink heading={'О проекте'} link={'#'} />
-          <ButtonedLink heading={'Технологии'} link={'#'} />
-          <ButtonedLink heading={'Студент'} link={'#'} />
+        <ul className={ `nav-tab__list ${className}` }>
+          {links.map(({ caption, path, name }) => (
+              <li key={name}>
+                <ButtonedLink
+                  caption={caption}
+                  path={path}
+                  className={'nav-tab__item'}
+                />
+              </li>
+          ))}
         </ul>
       </nav>
-  )
+  );
 }
 
 export default NavTab;

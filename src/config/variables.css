@@ -29,7 +29,7 @@
   --search-field-border-radius: 9px;
 
   /* размеры контейнеров и медиазапросы */
-  --desktop-container: 1240px;
+  --desktop-container: 1200px;
   --tablet-max-width: 1199px;
   --tablet-min-width: 768px;
   --mobile-max-width: 767px;

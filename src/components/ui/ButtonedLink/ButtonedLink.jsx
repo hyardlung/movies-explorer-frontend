@@ -1,12 +1,16 @@
 import React from 'react';
-
 import './ButtonedLink.css';
 
-const ButtonedLink = ({link, heading}) => {
+const ButtonedLink = ({
+                        caption = '',
+                        path = '',
+                        className = ''
+
+}) => {
   return (
-      <li className="buttoned-link__list-item">
-        <a href={link} className="buttoned-link">{heading}</a>
-      </li>
+      <a href={path} className={`buttoned-link ${className} `}>
+        {caption}
+      </a>
   )
 }
 

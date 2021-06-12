@@ -2,7 +2,7 @@ import React from 'react';
 import './Navigation.css';
 import NavigationLink from '../ui/NavigationLink/NavigationLink';
 
-const Navigation = ({links = []}) => {
+const Navigation = ({ links = [] }) => {
   return (
       <nav className="navigation">
         <ul className="navigation__list">
