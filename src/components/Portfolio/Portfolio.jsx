@@ -16,7 +16,9 @@ const Portfolio = ({
                     href={item.url}
                     rel="noopener noreferrer"
                     target="_blank"
-                    className="portfolio__link">{item.caption}
+                    className="portfolio__link"
+                >
+                  {item.caption}
                 </a>
                 <img
                     src={linkArrow}

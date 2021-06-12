@@ -1,5 +1,5 @@
 .portfolio__about-me {
-  margin: 95px 0 125px;
+  margin: 95px 0 0;
 }
 
 .portfolio__heading {
@@ -50,7 +50,7 @@
 
 @media screen and (max-width: 768px) {
   .portfolio__about-me {
-    margin: 84px 0 125px;
+    margin-top: 84px;
   }
 
   .portfolio__list {

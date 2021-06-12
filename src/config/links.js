@@ -45,7 +45,7 @@ const navTabLinks = [
     path: '#',
     name: 'aboutMe',
   },
-]
+];
 
 const techs = [
   {
@@ -76,7 +76,7 @@ const techs = [
     // id: 7,
     caption: 'mongoDB',
   },
-]
+];
 
 const portfolioLinks = [
   {
@@ -94,7 +94,23 @@ const portfolioLinks = [
     caption: 'Одностраничное приложение',
     url: 'https://github.com/hyardlung/react-mesto-api-full'
   },
-]
+];
+
+const footerLinks = [
+  {
+    id: 'ya.pra-home',
+    caption: 'Яндекс.Практикум',
+    url: 'https://praktikum.yandex.ru'
+  },{
+    id: 'ya.pra-gh',
+    caption: 'Github',
+    url: 'https://github.com/yandex-praktikum'
+  },{
+    id: 'ya.pra-fb',
+    caption: 'Facebook',
+    url: 'https://www.facebook.com/yandex.praktikum'
+  },
+];
 
 export {
   authLinks,
@@ -102,5 +118,6 @@ export {
   navTabLinks,
   techs,
   portfolioLinks,
+  footerLinks,
 };
 
