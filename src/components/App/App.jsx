@@ -1,17 +1,28 @@
-import React from 'react';
+import { useState } from 'react';
+import { Switch, Route, NavLink, } from 'react-router-dom';
 import './App.css';
 
 import Header from '../Header/Header';
 import Main from '../Main/Main';
+import Movies from '../Movies/Movies';
 import Footer from '../Footer/Footer';
 import { footerLinks } from '../../config/links';
 
 
 const App = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
+
   return (
     <div className="app">
       <Header />
-      <Main />
+      <Switch>
+        <Route exact path="/">
+          <Main />
+        </Route>
+        <Route  path="/movies">
+          <Movies />
+        </Route>
+      </Switch>
       <Footer links={footerLinks}/>
     </div>
   );
