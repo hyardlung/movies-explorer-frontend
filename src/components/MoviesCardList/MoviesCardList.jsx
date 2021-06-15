@@ -10,16 +10,19 @@ const MoviesCardList = ({
     duration = ''
                         }) => {
   return (
-      <ul className="movies__card-list">
-        {links.map((item) => (
-            <MoviesCard
-                _id={item._id}
-                url={item.url}
-                title={item.title}
-                duration={item.duration}
-            />
-        ))}
-      </ul>
+      <div  className="movies-card-list">
+        <p className="movies-card-list__empty-text">Здесь пока ничего нет</p>
+        <ul className="movies-card-list__ul">
+          {links.map((item) => (
+              <MoviesCard
+                  _id={item._id}
+                  url={item.url}
+                  title={item.title}
+                  duration={item.duration}
+              />
+          ))}
+        </ul>
+      </div>
   );
 }
 

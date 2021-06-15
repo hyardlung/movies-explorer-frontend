@@ -1,0 +1,10 @@
+.saved-movies {
+  padding: 0 calc((100vw - 768px)/(1280 - 768) * (70 - 30) + 30px);
+}
+
+.saved-movies__container {
+  position: relative;
+  box-sizing: border-box;
+  max-width: var(--desktop-container);
+  margin: 0 auto;
+}

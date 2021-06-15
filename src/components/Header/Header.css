@@ -1,17 +1,24 @@
 .header {
+  padding: 0 70px;
   display: flex;
   align-items: center;
   min-height: 74px;
-  padding: 0 50px;
-}
-
-.header__logo {
-  margin-right: 44px;
 }
 
 .header__nav-wrapper {
+  width: 100%;
+  margin-left: 44px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0 calc((100vw - 320px)/(768 - 320) * (30 - 14) + 14px);
+  }
+
+  .header__nav-wrapper {
+    display: none;
+  }
 }

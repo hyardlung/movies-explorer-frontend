@@ -226,6 +226,27 @@ const movies = [
     title: '33 слова о дизайне',
     duration: '1ч42м',
   },
+];
+
+const savedMovies = [
+  {
+    id: Math.random(),
+    url: img1,
+    title: '33 слова о дизайне',
+    duration: '1ч42м',
+  },
+  {
+    id: Math.random(),
+    url: img2,
+    title: '33 слова о дизайне',
+    duration: '1ч42м',
+  },
+  {
+    id: Math.random(),
+    url: img3,
+    title: '33 слова о дизайне',
+    duration: '1ч42м',
+  },
 ]
 
 export {
@@ -236,5 +257,6 @@ export {
   portfolioLinks,
   footerLinks,
   movies,
+    savedMovies,
 };
 

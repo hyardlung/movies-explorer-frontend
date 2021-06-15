@@ -25,7 +25,7 @@
   /* скругления */
   --base-border-radius: 10px;
   --auth-buttons-border-radius: 3px;
-  --account-button-border-radius: 6px;
+  --wide-button-border-radius: 6px;
   --search-field-border-radius: 9px;
 
   /* размеры контейнеров и медиазапросы */

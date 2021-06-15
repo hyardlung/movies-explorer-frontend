@@ -7,3 +7,7 @@
   color: var(--light-text-color);
   background-color: var(--primary-bg-color);
 }
+
+:focus {
+  outline: 1px solid #3DDC84;
+}
