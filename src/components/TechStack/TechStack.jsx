@@ -1,5 +1,5 @@
 import React from 'react';
-import ButtonedLink from '../ui/ButtonedLink/ButtonedLink';
+import ButtonedLink from '../ButtonedLink/ButtonedLink';
 
 import './TechStack.css';
 

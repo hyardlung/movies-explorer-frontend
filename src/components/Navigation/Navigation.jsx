@@ -1,6 +1,6 @@
 import React from 'react';
 import './Navigation.css';
-import NavigationLink from '../ui/NavigationLink/NavigationLink';
+import NavigationLink from '../NavigationLink/NavigationLink';
 
 const Navigation = ({ links = [] }) => {
   return (

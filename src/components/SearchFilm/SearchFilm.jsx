@@ -1,6 +1,6 @@
 import React from 'react';
 import './SearchFilm.css'
-import ShortFilmFilter from '../ui/ShortFilmFilter/ShortFilmFilter';
+import ShortFilmFilter from '../ShortFilmFilter/ShortFilmFilter';
 
 const SearchFilm = ({
     className = ''

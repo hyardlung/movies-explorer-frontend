@@ -1,6 +1,6 @@
 import React from 'react';
 import './AboutProject.css';
-import SectionTitle from '../ui/SectionTitle/SectionTitile';
+import SectionTitle from '../SectionTitle/SectionTitile';
 
 const AboutProject = () => {
   return (

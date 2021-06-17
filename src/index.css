@@ -9,5 +9,5 @@
 }
 
 :focus {
-  outline: 1px solid #3DDC84;
+  /*outline: 1px solid var(--secondary-accent-color);*/
 }

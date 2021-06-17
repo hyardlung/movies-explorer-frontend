@@ -1,6 +1,6 @@
 import React from 'react';
 import './AboutMe.css';
-import SectionTitle from '../ui/SectionTitle/SectionTitile';
+import SectionTitle from '../SectionTitle/SectionTitile';
 import photo from '../../images/photo-min.jpeg'
 import Portfolio from '../Portfolio/Portfolio';
 import {portfolioLinks} from '../../config/links';

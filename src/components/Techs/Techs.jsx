@@ -1,6 +1,6 @@
 import React from 'react';
 import './Techs.css';
-import SectionTitle from '../ui/SectionTitle/SectionTitile';
+import SectionTitle from '../SectionTitle/SectionTitile';
 import TechStack from '../TechStack/TechStack';
 import { techs } from '../../config/links';
 

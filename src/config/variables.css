@@ -9,6 +9,7 @@
   --light-text-color: #fff;
   --lightgray-text-color: #8B8B8B;
   --dark-text-color: #000;
+  --input-error-color: #EE3465;
   --primary-ff-stack: Inter, Arial, Helvetica, sans-serif;
   --nav-link--text-size: 13px;
   --regular-fw: 400;
@@ -30,6 +31,7 @@
 
   /* размеры контейнеров и медиазапросы */
   --desktop-container: 1200px;
+  --auth-form-container: 396px;
   --tablet-max-width: 1199px;
   --tablet-min-width: 768px;
   --mobile-max-width: 767px;

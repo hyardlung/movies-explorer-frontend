@@ -4,7 +4,7 @@ import './ShortFilmFilter.css';
 const ShortFilmFilter = () => {
   return (
       <div className="shortfilm-filter">
-        <label for="shortfilm-checkbox" className="shortfilm-filter__label">
+        <label htmlFor="shortfilm-checkbox" className="shortfilm-filter__label">
           <input type="checkbox"
                  id="shortfilm-checkbox"
                  className="shortfilm-filter__real"/>
