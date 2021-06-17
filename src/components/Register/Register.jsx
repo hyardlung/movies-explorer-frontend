@@ -14,8 +14,8 @@ const Register = () => {
           <AuthForm authTextsParams={{
             buttonCaption: 'Зарегистрироваться',
             question: 'Уже зарегистрированы?',
-            path: '/signin',
-            linkCaption: 'Войти'
+            linkCaption: 'Войти',
+            path: '/signin'
           }}>
             <label htmlFor="name" className="auth-form__label">
               Имя
