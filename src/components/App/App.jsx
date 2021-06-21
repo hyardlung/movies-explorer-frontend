@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Switch, Route, NavLink, } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import './App.css';
 
 import Header from '../Header/Header';
@@ -13,9 +12,7 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
 
-
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
 
   return (
     <div className="app">
@@ -42,13 +39,13 @@ const App = () => {
           <Login />
         </Route>
         <Route path="/profile">
+          <Header />
           <Profile />
         </Route>
         <Route path="*">
           <NotFound />
         </Route>
       </Switch>
-
     </div>
   );
 }

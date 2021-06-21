@@ -3,9 +3,9 @@ import { NavLink } from 'react-router-dom';
 import './NavigationLink.css';
 
 const NavigationLink = ({
-  className = '',
-  caption = '',
-  path = '/'
+                          className = '',
+                          caption = '',
+                          path = '/'
 }) => {
   return (
       <NavLink

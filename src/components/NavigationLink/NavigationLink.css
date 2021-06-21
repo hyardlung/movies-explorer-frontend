@@ -14,3 +14,14 @@
   opacity: .6;
   transition: all .3s;
 }
+
+.navigation-link_login {
+  width: 76px;
+  height: 32px;
+  display: block;
+  line-height: 2.3;
+  text-align: center;
+  color: var(--dark-text-color);
+  background-color: var(--primary-accent-color);
+  border-radius: var(--auth-buttons-border-radius);
+}

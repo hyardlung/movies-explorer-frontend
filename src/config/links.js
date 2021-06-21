@@ -257,6 +257,6 @@ export {
   portfolioLinks,
   footerLinks,
   movies,
-    savedMovies,
+  savedMovies,
 };
 

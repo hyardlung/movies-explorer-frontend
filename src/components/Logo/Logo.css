@@ -1,5 +1,5 @@
 .logo {
-  display: inherit;
+  display: flex;
   border-radius: 50%;
   transition: all .3s;
 }

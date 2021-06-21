@@ -7,9 +7,8 @@ const Navigation = ({ links = [] }) => {
       <nav className="navigation">
         <ul className="navigation__list">
           {links.map(({caption, path, id}) => (
-              <li key={id}>
+              <li key={id} className="navigation__item">
                 <NavigationLink
-                    className='navigation__item'
                     caption={caption}
                     path={path}
                 />
