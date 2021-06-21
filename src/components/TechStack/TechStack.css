@@ -12,14 +12,14 @@
   list-style: none;
 }
 
-.tech-stack__item {
+.tech-stack__link {
   width: 90px;
   height: 60px;
   line-height: 5;
 }
 
 @media screen and (max-width: 840px) {
-  .tech-stack__item {
+  .tech-stack__link {
     width: 84px;
     height: 57px;
   }

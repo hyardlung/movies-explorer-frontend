@@ -66,32 +66,39 @@ const navTabLinks = [
 
 const techs = [
   {
-    // id: 1,
+    id: 'html',
     caption: 'HTML',
+    url: 'https://ru.wikipedia.org/wiki/HTML5'
   },
   {
-    // id: 2,
+    id: 'css',
     caption: 'CSS',
+    url: 'https://ru.wikipedia.org/wiki/CSS'
   },
   {
-    // id: 3,
+    id: 'js',
     caption: 'JS',
+    url: 'https://ru.wikipedia.org/wiki/JavaScript'
   },
   {
-    // id: 4,
+    id: 'react',
     caption: 'React',
+    url: 'https://ru.wikipedia.org/wiki/React'
   },
   {
-    // id: 5,
+    id: 'git',
     caption: 'Git',
+    url: 'https://ru.wikipedia.org/wiki/Git'
   },
   {
-    // id: 6,
+    id: 'express',
     caption: 'Express.js',
+    url: 'https://ru.wikipedia.org/wiki/Express.js'
   },
   {
-    // id: 7,
+    id: 'mongo',
     caption: 'mongoDB',
+    url: 'https://ru.wikipedia.org/wiki/MongoDB'
   },
 ];
 

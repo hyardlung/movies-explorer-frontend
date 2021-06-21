@@ -3,12 +3,18 @@ import './ButtonedLink.css';
 
 const ButtonedLink = ({
                         caption = '',
-                        path = '',
+                        href = '',
+                        rel = '',
+                        target = '',
                         className = ''
 
 }) => {
   return (
-      <a href={path} className={`buttoned-link ${className} `}>
+      <a href={href}
+         rel={rel}
+         target={target}
+         className={`buttoned-link ${className} `}
+      >
         {caption}
       </a>
   )

@@ -10,11 +10,14 @@ const TechStack = ({
   return (
       <nav className="tech-stack">
         <ul className={ `tech-stack__list ${className}` }>
-          {links.map(({ caption }) => (
-              <li key={ caption }>
+          {links.map((item) => (
+              <li key={item.id}>
                 <ButtonedLink
-                    caption={caption}
-                    className={'tech-stack__item'}
+                    caption={item.caption}
+                    href={item.url}
+                    rel={"noopener noreferrer"}
+                    target={"_blank"}
+                    className={'tech-stack__link'}
                 />
               </li>
           ))}
