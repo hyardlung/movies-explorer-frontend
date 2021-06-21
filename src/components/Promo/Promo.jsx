@@ -1,10 +1,10 @@
 import React from 'react';
-import './Promo.css';
-
 import NavTab from '../NavTab/NavTab';
 import { navTabLinks } from '../../config/links';
 
-const Promo = ({ links = [] }) => {
+import './Promo.css';
+
+const Promo = () => {
   return (
       <section className="promo">
         <div className="promo__container">

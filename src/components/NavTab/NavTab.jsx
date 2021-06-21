@@ -10,12 +10,12 @@ const NavTab = ({
   return (
       <nav className="nav-tab">
         <ul className={ `nav-tab__list ${className}` }>
-          {links.map(({ caption, path, name }) => (
-              <li key={name}>
+          {links.map(({ id, caption, url }) => (
+              <li key={id} className="nav-tab__list-item">
                 <ButtonedLink
                   caption={caption}
-                  path={path}
-                  className={'nav-tab__item'}
+                  href={url}
+                  className={'nav-tab__link'}
                 />
               </li>
           ))}

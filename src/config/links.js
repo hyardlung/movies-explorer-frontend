@@ -47,20 +47,17 @@ const navTabLinks = [
   {
     id: 'aboutProject',
     caption: 'О проекте',
-    path: '#',
-    name: 'aboutProject',
+    url: '#about-project',
   },
   {
     id: 'techs',
     caption: 'Технологии',
-    path: '#',
-    name: 'techs',
+    url: '#techs'
   },
   {
     id: 'aboutMe',
     caption: 'Студент',
-    path: '#',
-    name: 'aboutMe',
+    url: '#about-me'
   },
 ];
 

@@ -1,12 +1,13 @@
 import React from 'react';
-import './Techs.css';
 import SectionTitle from '../SectionTitle/SectionTitile';
 import TechStack from '../TechStack/TechStack';
 import { techs } from '../../config/links';
 
+import './Techs.css';
+
 const Techs = () => {
   return (
-      <section className="techs">
+      <section id="techs" className="techs">
           <div className="techs__container">
           <SectionTitle title={'Технологии'} />
           <div className="techs__content-wrapper">

@@ -1,13 +1,14 @@
 import React from 'react';
-import './AboutMe.css';
 import SectionTitle from '../SectionTitle/SectionTitile';
 import photo from '../../images/photo-min.jpeg'
 import Portfolio from '../Portfolio/Portfolio';
 import {portfolioLinks} from '../../config/links';
 
+import './AboutMe.css';
+
 const AboutMe = () => {
   return (
-      <section className="about-me">
+      <section id="about-me" className="about-me">
         <div className="about-me__container">
           <SectionTitle title={'Студент'}/>
           <div className="bio">
@@ -23,10 +24,18 @@ const AboutMe = () => {
 
               <ul className="bio__links">
                 <li className="bio__list-item">
-                  <a href="#!" className="bio__external-link">Facebook</a>
+                  <a href="https://www.facebook.com/hyardlung/"
+                     rel="noopener noreferrer"
+                     target="_blank"
+                     className="bio__external-link">Facebook
+                  </a>
                 </li>
                 <li className="bio__list-item">
-                  <a href="#!" className="bio__external-link">Github</a>
+                  <a href="https://github.com/hyardlung"
+                     rel="noopener noreferrer"
+                     target="_blank"
+                     className="bio__external-link">Github
+                  </a>
                 </li>
               </ul>
             </div>
