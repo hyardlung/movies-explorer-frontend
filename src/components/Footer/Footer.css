@@ -92,16 +92,11 @@
 
   .footer__link {
     margin: 0;
-    line-height: 2.3;
+    font-size: 12px;
+    line-height: 2.4;
   }
 
   .footer__year {
     text-align: center;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .footer {
-    padding: 79px 30px 20px;
   }
 }

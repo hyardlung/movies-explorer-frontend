@@ -15,13 +15,13 @@
 }
 
 @media screen and (max-width: 500px) {
-  .nav-tab__item {
+  .nav-tab__link {
     width: 82px;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .nav-tab__item {
+  .nav-tab__link {
     padding: 5px 0;
     font-size: 10px;
     line-height: 1.6;

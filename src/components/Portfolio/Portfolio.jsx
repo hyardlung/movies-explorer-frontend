@@ -8,7 +8,7 @@ const Portfolio = ({
 }) => {
   return (
       <div className={`portfolio ${className}`}>
-        <h3 className={"portfolio__heading"}>Портфолио</h3>
+        <h3 className={'portfolio__heading'}>Портфолио</h3>
         <ul className="portfolio__list">
           {links.map((item) => (
               <li key={item.id} className="portfolio__list-item">

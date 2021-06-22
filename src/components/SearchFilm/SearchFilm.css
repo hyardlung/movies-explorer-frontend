@@ -39,7 +39,7 @@
 
 .search-film__input {
   width: 100%;
-  font-size: calc((100vw - 320px)/(768 - 320) * (18 - 14) + 14px);
+  font-size: 18px;
   color: var(--lightgray-text-color);
   background-color: transparent;
   border: none;
@@ -81,6 +81,10 @@ background-color: var(--secondary-accent-color);
 
   .search-film_position {
     margin: 80px 0 108px;
+  }
+
+  .search-film__input {
+    font-size: calc((100vw - 320px)/(768 - 320) * (18 - 14) + 14px);
   }
 }
 

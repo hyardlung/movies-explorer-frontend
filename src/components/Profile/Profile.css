@@ -43,6 +43,10 @@
   border: none;
 }
 
+.profile__input:focus {
+  outline: 1px solid var(--primary-accent-color);
+}
+
 .profile__divider {
   height: 1px;
   background: var(--dark-lines-color);

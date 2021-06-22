@@ -1,19 +1,12 @@
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import './Header.css';
 import Logo from '../Logo/Logo';
 import Navigation from '../Navigation/Navigation';
 import NavigationLink from '../NavigationLink/NavigationLink';
-import profileIcon from '../../images/profile-icon.svg'
+import ProfileLink from '../ProfileLink/ProfileLink';
 import { navLinks } from '../../config/links';
-import './Header.css';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
 const Header = ({ isLoggedIn = true }) => {
-
-  const [burgerVisible, setBurgerVisible] = useState(false);
-
-  const burgerVisibilityHandler = () => {
-    setBurgerVisible(!burgerVisible);
-  }
 
   return (
       <header className="header">
@@ -41,23 +34,12 @@ const Header = ({ isLoggedIn = true }) => {
                 </li>
               </ul>
             </nav>
-        ) : (<NavLink to='/profile'   /* ссылка на страницу редактирования профиля */
-                      className="header__profile-link"
-                      activeClassName="header__profile-link_active">
-              Аккаунт
-              <img src={profileIcon}
-                   alt="Иконка профиля"
-                   className="header__profile-icon"/>
-            </NavLink>)
+        ) : <ProfileLink className={'header__profile-link'} />
         }
-
-        <div className={`header__burger-icon 
-        ${burgerVisible ? 'header__burger-icon_active' : ('')}`}
-             onClick={burgerVisibilityHandler}>
-          <div className="header__burger-line" />
-        </div>
+        {/* бургер-меню */}
+        { isLoggedIn ? <BurgerMenu/> : ('') }
       </header>
-  )
+  );
 }
 
 export default Header;

@@ -25,3 +25,12 @@
   background-color: var(--primary-accent-color);
   border-radius: var(--auth-buttons-border-radius);
 }
+
+@media screen and (max-width: 320px) {
+  .navigation-link {
+    width: 54px;
+    height: 26px;
+    font-size: 10px;
+    line-height: 2.7;
+  }
+}

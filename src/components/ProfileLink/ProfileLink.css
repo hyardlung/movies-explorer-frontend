@@ -1,0 +1,34 @@
+.profile-link {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, min-content);
+  align-items: center;
+  gap: 14px;
+  font-size: 14px;
+  color: var(--light-text-color);
+  text-decoration: none;
+  transition: .3s all;
+}
+
+.profile-link:hover {
+  opacity: .6;
+}
+
+.profile-link_active {
+  font-weight: var(--medium-fw);
+}
+
+.profile-icon {
+  box-sizing: border-box;
+  padding: 8px;
+  width: 29px;
+  height: 29px;
+  background-color: var(--profile-icon-bg-color);
+  border-radius: var(--wide-button-border-radius);
+}
+
+@media screen and (max-width: 768px) {
+  .profile-link {
+    display: none;
+  }
+}
