@@ -1,0 +1,16 @@
+.buttoned-link {
+  display: block;
+  font-size: 12px;
+  line-height: 3.33;
+  text-align: center;
+  font-weight: var(--medium-fw);
+  color: var(--light-text-color);
+  background-color: var(--tertiary-bg-color);
+  border-radius: var(--base-border-radius);
+  text-decoration: none;
+  transition: all .3s;
+}
+
+.buttoned-link:hover {
+  filter: invert(10%);
+}

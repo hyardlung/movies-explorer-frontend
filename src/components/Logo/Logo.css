@@ -1,0 +1,12 @@
+.logo {
+  display: flex;
+  border-radius: 50%;
+  transition: all .3s;
+}
+
+
+.logo:hover {
+  filter: invert(20%);
+  transform: rotate(1turn);
+  transition: all .3s;
+}

@@ -1,0 +1,32 @@
+.tech-stack {
+}
+
+.tech-stack__list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+}
+
+.tech-stack__link {
+  width: 90px;
+  height: 60px;
+  line-height: 5;
+}
+
+@media screen and (max-width: 840px) {
+  .tech-stack__link {
+    width: 84px;
+    height: 57px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .tech-stack__list {
+    padding: 20px;
+  }
+}

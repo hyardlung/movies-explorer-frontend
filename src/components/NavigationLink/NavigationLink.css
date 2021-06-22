@@ -1,0 +1,36 @@
+.navigation-link {
+  display: inline-block;
+  color: var(--light-text-color);
+  font-size: var(--nav-link--text-size);
+  text-decoration: none;
+  transition: all .3s;
+}
+
+.navigation-link_active {
+  font-weight: var(--medium-fw);
+}
+
+.navigation-link:hover {
+  opacity: .6;
+  transition: all .3s;
+}
+
+.navigation-link_login {
+  width: 76px;
+  height: 32px;
+  display: block;
+  line-height: 2.3;
+  text-align: center;
+  color: var(--dark-text-color);
+  background-color: var(--primary-accent-color);
+  border-radius: var(--auth-buttons-border-radius);
+}
+
+@media screen and (max-width: 320px) {
+  .navigation-link {
+    width: 54px;
+    height: 26px;
+    font-size: 10px;
+    line-height: 2.7;
+  }
+}

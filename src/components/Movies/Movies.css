@@ -1,0 +1,46 @@
+.movies {
+  padding: 0 calc((100vw - 768px)/(1280 - 768) * (70 - 30) + 30px);
+}
+
+.movies__container {
+  position: relative;
+  box-sizing: border-box;
+  max-width: var(--desktop-container);
+  margin: 0 auto;
+}
+
+.movies__load-more {
+  margin: 0 auto 80px;
+  padding: 0 20px;
+  display: block;
+  max-width: 320px;
+  width: 100%;
+  height: 36px;
+  font-size: 12px;
+  line-height: 1.25;
+  font-weight: var(--medium-fw);
+  color: var(--light-text-color);
+  background-color: var(--quaternary-bg-color);
+  border-radius: var(--wide-button-border-radius);
+  border: none;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.movies__load-more:hover {
+  filter: invert(10%);
+}
+
+@media screen and (max-width: 768px) {
+  .movies {
+    padding: 0 calc((100vw - 320px)/(768 - 320) * (30 - 10) + 10px);
+  }
+
+  .movies__load-more {
+    max-width: 240px;
+  }
+
+  .movies__search-film {
+    margin: 80px 0 92px;
+  }
+}

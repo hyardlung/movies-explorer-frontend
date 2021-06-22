@@ -1,0 +1,110 @@
+.auth-form {
+  display: grid;
+  grid-template-rows: repeat(2, min-content);
+  align-content: space-between;
+}
+
+.auth-form__inputs-wrapper {
+  display: grid;
+  row-gap: 9px;
+}
+
+.auth-form__label {
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+  line-height: 1.2;
+  color: var(--lightgray-text-color);
+}
+
+.auth-form__input {
+  padding-bottom: 6px;
+  height: 25px;
+  font-size: 14px;
+  line-height: 1.21;
+  color: var(--light-text-color);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--dark-lines-color);
+  outline: none;
+}
+
+.auth-form__input:focus {
+  border-bottom-color: var(--secondary-accent-color);
+}
+
+.auth-form__input_state_falsy {
+  color: var(--input-error-color);
+}
+
+.auth-form__error-message {
+  display: none;
+  margin-top: 4px;
+  font-size: 10px;
+  line-height: 1.2;
+  color: var(--input-error-color);
+}
+
+.auth-form__control-wrapper {
+  display: grid;
+  align-items: center;
+  row-gap: 16px;
+}
+
+.auth-form__submit-button {
+  height: 45px;
+  font-size: 14px;
+  font-weight: var(--medium-fw);
+  color: var(--light-text-color);
+  background-color: var(--secondary-accent-color);
+  border: none;
+  border-radius: var(--auth-buttons-border-radius);
+  cursor: pointer;
+  transition: .3s all;
+}
+
+.auth-form__submit-button:hover {
+  filter: brightness(120%);
+
+}
+
+.auth-form__redirect-question {
+  margin: 0;
+  font-size: calc((100vw - 320px)/(1280 - 320) * (14 - 12) + 12px);
+  line-height: 1.21;
+  color: var(--lightgray-text-color);
+  text-align: center;
+}
+
+.auth-form__redirect-link {
+  margin-left: 10px;
+  color: var(--secondary-accent-color);
+  text-decoration: none;
+  transition: .3s all;
+}
+
+.auth-form__redirect-link:hover {
+  opacity: .6;
+  transition: .3s all;
+}
+
+@media screen and (max-width: 320px) {
+  .auth-form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .auth-form__inputs-wrapper {
+    row-gap: 24px;
+  }
+
+  .auth-form__submit-button {
+    font-size: 12px;
+  }
+
+  .auth-form__redirect-question {
+    font-size: 12px;
+  }
+}

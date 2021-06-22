@@ -1,0 +1,111 @@
+.search-film {
+  box-sizing: border-box;
+  position: relative;
+  padding: 16px 30px 17px;
+  max-height: 73px;
+  display: grid;
+  grid-template-columns: 1fr repeat(2, min-content);
+  grid-template-areas:
+  "form divider short-film"
+  ;
+  column-gap: 30px;
+  background-color: var(--secondary-bg-color);
+  border-radius: var(--base-border-radius);
+}
+
+
+.search-film_position {
+  margin: 70px 0;
+}
+
+.search-film__icon {
+  margin-right: 19px;
+}
+
+.search-film__form {
+  width: 100%;
+  display: grid;
+  grid-area: form;
+  grid-template-columns: 1fr min-content;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-film__input-wrapper {
+  padding-right: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.search-film__input {
+  width: 100%;
+  font-size: 18px;
+  color: var(--lightgray-text-color);
+  background-color: transparent;
+  border: none;
+}
+
+.search-film__input:focus {
+  outline: 1px solid var(--primary-accent-color);
+}
+
+.search-film__button {
+  width: 34px;
+  height: 34px;
+  justify-self: right;
+background-color: var(--secondary-accent-color);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.search-film__button:hover {
+  filter: brightness(150%);
+  transition: all .3s;
+}
+
+.search-film__divider {
+  display: inline-block;
+  grid-area: divider;
+  width: 1px;
+  height: 40px;
+  background-color: var(--dark-lines-color);
+}
+
+@media screen and (max-width: 768px){
+  .search-film {
+    padding-right: 20px;
+    column-gap: 20px;
+  }
+
+  .search-film_position {
+    margin: 80px 0 108px;
+  }
+
+  .search-film__input {
+    font-size: calc((100vw - 320px)/(768 - 320) * (18 - 14) + 14px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .search-film {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, min-content);
+    grid-template-areas:
+      "form"
+      "short-film"
+    ;
+    row-gap: 70px;
+  }
+
+  .search-film__icon, .search-film__divider {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .search-film {
+    padding-left: 17px;
+  }
+}

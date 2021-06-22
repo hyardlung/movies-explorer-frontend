@@ -1,0 +1,13 @@
+@import url('./config/variables.css');
+@import url('./vendor/normalize.css');
+@import url('./vendor/fonts/fonts.css');
+
+#root {
+  font-family: var(--primary-ff-stack);
+  color: var(--light-text-color);
+  background-color: var(--primary-bg-color);
+}
+
+:focus {
+  /*outline: 1px solid var(--secondary-accent-color);*/
+}

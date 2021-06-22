@@ -1,0 +1,71 @@
+.shortfilm-filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  grid-area: short-film;
+}
+
+.shortfilm-filter__caption {
+  margin-left: 15px;
+  font-size: 13px;
+}
+
+.shortfilm-filter__real {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* состояние неотмеченного чекбокса */
+.shortfilm-filter__real + .shortfilm-filter__fake {
+  display: block;
+  position: relative;
+  width: 34px;
+  height: 14px;
+  border-radius: 20px;
+  background-color: var(--dark-lines-color);
+  transition: .2s;
+}
+
+/* состояние ползунка неотмеченного чекбокса */
+.shortfilm-filter__real + .shortfilm-filter__fake:before {
+  position: absolute;
+  content: '';
+  top: 2px;
+  left: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: .2s;
+}
+
+/* состояние отмеченного чекбокса */
+.shortfilm-filter__real:checked + .shortfilm-filter__fake {
+    background-color: var(--primary-accent-color);
+    transition: .2s;
+}
+
+/* состояние ползунка отмеченного чекбокса */
+.shortfilm-filter__real:checked + .shortfilm-filter__fake:before {
+  left: 22px;
+}
+
+.shortfilm-filter__fake:hover {
+  filter: brightness(120%);
+  transition: .2s;
+}
+
+@media screen and (max-width: 600px) {
+  .shortfilm-filter {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .shortfilm-filter__caption {
+    font-size: 11px;
+  }
+}

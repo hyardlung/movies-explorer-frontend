@@ -1,0 +1,102 @@
+.footer {
+  padding: 78px 70px 20px;
+  font-size: 13px;
+  line-height: 1.23;
+}
+
+.footer__container {
+  margin: 0 auto;
+  max-width: var(--desktop-container);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr min-content 1fr;
+  gap: 20px;
+  grid-template-areas:
+    "heading heading"
+    "line line"
+    "year nav-list"
+  ;
+}
+
+.footer__heading {
+  margin: 0;
+  color: var(--lightgray-text-color);
+  text-align: center;
+  grid-area: heading;
+}
+
+.footer__line {
+  height: 1px;
+  grid-area: line;
+
+  background-color: var(--dark-lines-color);
+}
+
+.footer__year {
+  grid-area: year;
+}
+
+.footer__nav-list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  grid-area: nav-list;
+  list-style: none;
+}
+
+.footer__link {
+  margin-left: 20px;
+  color: var(--light-text-color);
+  text-decoration: none;
+  transition: all .3s;
+}
+
+.footer__link:hover {
+  opacity: .6;
+  transition: all .3s;
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: 58px 50px 20px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .footer {
+    padding: 62px 10px 10px;
+  }
+
+  .footer__container {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, min-content) 1fr min-content;
+    grid-template-areas:
+      "heading"
+      "line"
+      "nav-list"
+      "year"
+    ;
+  }
+
+  .footer__heading {
+    font-size: 12px;
+  }
+
+  .footer__nav-list {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer__link {
+    margin: 0;
+    font-size: 12px;
+    line-height: 2.4;
+  }
+
+  .footer__year {
+    text-align: center;
+  }
+}
