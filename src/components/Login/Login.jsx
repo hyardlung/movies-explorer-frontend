@@ -1,14 +1,9 @@
 import {useState} from 'react';
-import {useHistory} from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import AuthForm from '../AuthForm/AuthForm';
-
 import './Login.css';
-import {mainApi} from "../../utils/MainApi";
 
-const Login = () => {
-  const history = useHistory();
-  const [loggedIn, setLoggedIn] = useState(false);
+const Login = ({onLogin}) => {
   const [userData, setUserData] = useState({
     name: '',
     email: '',
@@ -23,19 +18,9 @@ const Login = () => {
     });
   }
 
-  const handleLogin = ({email, password}) => {
-    mainApi.authorize({email, password})
-        .then(() => {
-          setLoggedIn(true);
-          history.push('/movies');
-          alert('Вы успешно авторизовались!');
-        })
-        .catch(err => console.log(err));
-  };
-
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    handleLogin(userData);
+    onLogin(userData);
   }
 
   return (

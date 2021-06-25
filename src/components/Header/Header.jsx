@@ -6,17 +6,17 @@ import ProfileLink from '../ProfileLink/ProfileLink';
 import { navLinks } from '../../config/links';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
-const Header = ({ isLoggedIn = false}) => {
-
+const Header = ({loggedIn}) => {
+  // const token = localStorage.getItem('token');
   return (
       <header className="header">
         <Logo />
         {/* навигация авторизованного пользователя */}
         <div className="header__loggedin-nav-wrapper">
-          { isLoggedIn ? <Navigation links={navLinks}/> : ('') }
+          { loggedIn ? <Navigation links={navLinks}/> : ('') }
         </div>
         {/* навигация неавторизованного пользователя */}
-        { !isLoggedIn ? (
+        { !loggedIn ? (
             <nav className="header__auth-nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item">
@@ -37,7 +37,7 @@ const Header = ({ isLoggedIn = false}) => {
         ) : <ProfileLink className={'header__profile-link'} />
         }
         {/* бургер-меню */}
-        { isLoggedIn ? <BurgerMenu/> : ('') }
+        { loggedIn ? <BurgerMenu/> : ('') }
       </header>
   );
 }

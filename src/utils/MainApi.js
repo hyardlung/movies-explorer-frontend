@@ -12,17 +12,22 @@ class MainApi {
   }
 
   // GET: получение данных профиля
-  getUserData() {
+  getUserData(token) {
     return fetch(`${this._url}/users/me`, {
-      headers: {...this._headers}
+      headers: {
+        ...this._headers,
+        'Authorization': `Bearer ${token}`
+      }
     }).then(this._getResponse)
   }
 
   // POST: регистрация пользователя
-  register(name, email, password) {
+  register({name, email, password}) {
     return fetch(`${this._url}/signup`, {
       method: 'POST',
-      headers: {...this._headers},
+      headers: {
+        ...this._headers
+      },
       body: JSON.stringify({
         name, email, password
       })
@@ -33,7 +38,9 @@ class MainApi {
   authorize({email, password}) {
     return fetch(`${this._url}/signin`, {
       method: 'POST',
-      headers: {...this._headers},
+      headers: {
+        ...this._headers,
+      },
       body: JSON.stringify({
         email, password
       })
@@ -41,14 +48,26 @@ class MainApi {
   }
 
   // PATCH: редактирование данных профиля
-  editUserData(name, email) {
+  editUserData({name, email}, token) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
-      headers: {...this._headers},
+      headers: {
+        ...this._headers,
+        'Authorization': `Bearer ${token}`
+      },
       body: JSON.stringify({
         name, email
       })
     }).then(this._getResponse)
+  }
+
+  getContent(token) {
+    return fetch(`${this._url}/users/me`, {
+      headers: {
+        ...this._headers,
+        'Authorization': `Bearer ${token}`
+      }
+    })
   }
 }
 

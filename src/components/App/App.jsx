@@ -1,6 +1,7 @@
-import {Route, Switch} from 'react-router-dom';
-import './App.css';
+import {useEffect, useState} from 'react';
+import {Route, Switch, useHistory} from 'react-router-dom';
 
+import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
@@ -11,41 +12,117 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
+import {mainApi} from '../../utils/MainApi';
+import {CurrentUserContext} from '../../contexts/currentUserContext';
 
 const App = () => {
+  const history = useHistory();
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
+  const [userData, setUserData] = useState({
+    name: '',
+    email: '',
+    password: ''
+  });
+
+  const getToken = () => {
+    return localStorage.getItem('token');
+  };
+
+  const tokenCheck = () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      mainApi.getContent(token)
+          .then(res => {
+            if (res) {
+              setLoggedIn(true);
+              history.push('/movies');
+            }
+          })
+          .catch(err => console.log(err));
+    }
+  }
+
+  useEffect(() => {
+    tokenCheck()
+  }, []);
+
+  useEffect(() => {
+    if (loggedIn) history.push('/movies');
+  }, [history, loggedIn]);
+
+  useEffect(() => {
+    if (loggedIn) {
+      const token = localStorage.getItem('token');
+      Promise.all([mainApi.getUserData(token)])
+          .then(userData => {
+            setCurrentUser(userData);
+          })
+          .catch(err => console.log(err));
+    }
+  }, [loggedIn])
+
+  // обработчик регистрации пользователя
+  const handleRegister = ({name, email, password}) => {
+    return mainApi.register({name, email, password})
+        .then(() => {
+          alert('Вы успешно зарегистрировались!');
+          setLoggedIn(true);
+          history.push('/movies');
+        })
+  };
+
+  // обработчик авторизации пользователя
+  const handleLogin = ({email, password}) => {
+    mainApi.authorize({email, password})
+        .then(data => {
+          if (!data) console.log('invalid email/password');
+          if (data.token) {
+            localStorage.setItem('token', data.token);
+            mainApi.getContent(data.token)
+                .then(res => res.send);
+            setLoggedIn(true);
+            history.push('/movies');
+            alert('Вы успешно авторизовались!');
+          }
+        })
+        .catch(err => console.log(err));
+  };
 
   return (
       <div className="app">
-        <Switch>
-          <Route exact path="/">
-            <Header/>
-            <Main/>
-            <Footer links={footerLinks}/>
-          </Route>
-          <Route path="/movies">
-            <Header/>
-            <Movies/>
-            <Footer links={footerLinks}/>
-          </Route>
-          <Route path="/saved-movies">
-            <Header/>
-            <SavedMovies/>
-            <Footer links={footerLinks}/>
-          </Route>
-          <Route path="/signup">
-            <Register/>
-          </Route>
-          <Route path="/signin">
-            <Login/>
-          </Route>
-          <Route path="/profile">
-            <Header/>
-            <Profile/>
-          </Route>
-          <Route path="*">
-            <NotFound/>
-          </Route>
-        </Switch>
+        <CurrentUserContext.Provider value={currentUser}>
+          <Switch>
+            <Route exact path="/">
+              <Header loggedIn={loggedIn} />
+              <Main/>
+              <Footer links={footerLinks}/>
+            </Route>
+            <Route path="/movies">
+              <Header loggedIn={loggedIn}/>
+              <Movies/>
+              <Footer links={footerLinks}/>
+            </Route>
+            <Route path="/saved-movies">
+              <Header loggedIn={loggedIn}/>
+              <SavedMovies/>
+              <Footer links={footerLinks}/>
+            </Route>
+            <Route path="/signup">
+              <Register onRegister={handleRegister} />
+            </Route>
+            <Route path="/signin">
+              <Login onLogin={handleLogin} />
+            </Route>
+            <Route path="/profile">
+              <Header loggedIn={loggedIn}/>
+              <Profile/>
+            </Route>
+            <Route path="*">
+              <NotFound/>
+            </Route>
+          </Switch>
+        </CurrentUserContext.Provider>
       </div>
   );
 }

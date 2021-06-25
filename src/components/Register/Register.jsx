@@ -1,26 +1,14 @@
-import {useState, useEffect} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useState} from 'react';
 import Logo from '../Logo/Logo';
 import AuthForm from '../AuthForm/AuthForm';
-import {mainApi} from '../../utils/MainApi';
 import './Register.css';
 
-
-
-const Register = () => {
-  const history = useHistory();
-  const [loggedIn, setLoggedIn] = useState(false);
+const Register = ({onRegister}) => {
   const [userData, setUserData] = useState({
     name: '',
     email: '',
     password: ''
   });
-
-  useEffect(() => {
-    if(loggedIn) {
-      history.push('/movies')
-    }
-  }, [history, loggedIn])
 
   const handleChange = (evt) => {
     const {name, value} = evt.target;
@@ -30,18 +18,10 @@ const Register = () => {
     });
   }
 
-  const handleRegister = ({name, email, password}) => {
-    return mainApi.register(name, email, password)
-        .then(() => {
-          alert('Вы успешно зарегистрировались!');
-          history.push('/signin');
-        })
-  }
-
   const handleSubmit = (evt) => {
     let {name, email, password} = userData;
     evt.preventDefault();
-    handleRegister({name, email, password})
+    onRegister({name, email, password})
         .catch(err => console.log(err.message || 'Что-то пошло не так'));
   }
 
