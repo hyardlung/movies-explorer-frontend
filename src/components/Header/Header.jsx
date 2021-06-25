@@ -6,7 +6,7 @@ import ProfileLink from '../ProfileLink/ProfileLink';
 import { navLinks } from '../../config/links';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
-const Header = ({ isLoggedIn = true }) => {
+const Header = ({ isLoggedIn = false}) => {
 
   return (
       <header className="header">

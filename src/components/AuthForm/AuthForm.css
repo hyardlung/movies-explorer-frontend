@@ -4,9 +4,10 @@
   align-content: space-between;
 }
 
-.auth-form__inputs-wrapper {
+.auth-form__fieldset {
   display: grid;
   row-gap: 9px;
+  border: none;
 }
 
 .auth-form__label {
@@ -96,7 +97,7 @@
     justify-content: space-between;
   }
 
-  .auth-form__inputs-wrapper {
+  .auth-form__fieldset {
     row-gap: 24px;
   }
 
