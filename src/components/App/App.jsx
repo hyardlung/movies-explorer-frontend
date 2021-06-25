@@ -35,8 +35,8 @@ const App = () => {
       mainApi.getContent(token)
           .then(res => {
             if (res) {
+              setCurrentUser(res.data);
               setLoggedIn(true);
-              history.push('/movies');
             }
           })
           .catch(err => console.log(err));
@@ -65,29 +65,35 @@ const App = () => {
   // обработчик регистрации пользователя
   const handleRegister = ({name, email, password}) => {
     return mainApi.register({name, email, password})
-        .then(() => {
-          alert('Вы успешно зарегистрировались!');
-          setLoggedIn(true);
-          history.push('/movies');
+        .then(data => {
+          if (data) {
+            handleLogin({email, password});
+            alert('Вы успешно зарегистрировались!');
+            history.push('/movies');
+          }
         })
+        .catch(err => console.log(err));
   };
 
   // обработчик авторизации пользователя
   const handleLogin = ({email, password}) => {
     mainApi.authorize({email, password})
         .then(data => {
-          if (!data) console.log('invalid email/password');
-          if (data.token) {
-            localStorage.setItem('token', data.token);
-            mainApi.getContent(data.token)
-                .then(res => res.send);
+          if (data) {
             setLoggedIn(true);
-            history.push('/movies');
             alert('Вы успешно авторизовались!');
+            history.push('/movies');
           }
         })
         .catch(err => console.log(err));
   };
+
+  const handleSignOut = () => {
+    localStorage.removeItem('token');
+    setLoggedIn(false);
+    setUserData('');
+    history.push('/');
+  }
 
   return (
       <div className="app">
@@ -116,7 +122,7 @@ const App = () => {
             </Route>
             <Route path="/profile">
               <Header loggedIn={loggedIn}/>
-              <Profile/>
+              <Profile handleSignOut={handleSignOut}/>
             </Route>
             <Route path="*">
               <NotFound/>
