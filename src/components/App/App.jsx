@@ -8,22 +8,17 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Footer from '../Footer/Footer';
 import {footerLinks} from '../../config/links';
+import {CurrentUserContext} from '../../contexts/currentUserContext';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
 import {mainApi} from '../../utils/MainApi';
-import {CurrentUserContext} from '../../contexts/currentUserContext';
 
 const App = () => {
   const history = useHistory();
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  const [userData, setUserData] = useState({
-    name: '',
-    email: '',
-    password: ''
-  });
 
   const getToken = () => {
     return localStorage.getItem('token');
@@ -34,33 +29,11 @@ const App = () => {
     if (token) {
       mainApi.getContent(token)
           .then(res => {
-            if (res) {
-              setCurrentUser(res.data);
-              setLoggedIn(true);
-            }
+            if (res) setLoggedIn(true);
           })
           .catch(err => console.log(err));
     }
-  }
-
-  useEffect(() => {
-    tokenCheck()
-  }, []);
-
-  useEffect(() => {
-    if (loggedIn) history.push('/movies');
-  }, [history, loggedIn]);
-
-  useEffect(() => {
-    if (loggedIn) {
-      const token = localStorage.getItem('token');
-      Promise.all([mainApi.getUserData(token)])
-          .then(userData => {
-            setCurrentUser(userData);
-          })
-          .catch(err => console.log(err));
-    }
-  }, [loggedIn])
+  };
 
   // обработчик регистрации пользователя
   const handleRegister = ({name, email, password}) => {
@@ -79,21 +52,48 @@ const App = () => {
   const handleLogin = ({email, password}) => {
     mainApi.authorize({email, password})
         .then(data => {
-          if (data) {
-            setLoggedIn(true);
-            alert('Вы успешно авторизовались!');
-            history.push('/movies');
-          }
+          localStorage.setItem('token', data.token);
+          setLoggedIn(true);
+          history.push('/movies');
         })
         .catch(err => console.log(err));
   };
 
+  //обработчик выхода из аккаунта
   const handleSignOut = () => {
     localStorage.removeItem('token');
-    setLoggedIn(false);
-    setUserData('');
     history.push('/');
-  }
+    setLoggedIn(false);
+  };
+
+  // обработчик редактирования профиля
+  const handleUpdateUser = ({name, email}) => {
+    mainApi.editUserData({name, email}, getToken())
+        .then(res => {
+          setCurrentUser(res);
+          alert('Данные успешно обновлены')
+        })
+        .catch(err => console.log(err));
+  };
+
+  useEffect(() => {
+    tokenCheck()
+  }, []);
+
+  useEffect(() => {
+    if (loggedIn) history.push('/movies');
+  }, [history, loggedIn]);
+
+  useEffect(() => {
+    if (loggedIn) {
+      const token = localStorage.getItem('token');
+      Promise.all([mainApi.getUserData(token)])
+          .then(userData => {
+            setCurrentUser(userData);
+          })
+          .catch(err => console.log(err));
+    }
+  }, [loggedIn]);
 
   return (
       <div className="app">
@@ -122,7 +122,9 @@ const App = () => {
             </Route>
             <Route path="/profile">
               <Header loggedIn={loggedIn}/>
-              <Profile handleSignOut={handleSignOut}/>
+              <Profile onSignOut={handleSignOut}
+                       onUpdateUser={handleUpdateUser}
+              />
             </Route>
             <Route path="*">
               <NotFound/>

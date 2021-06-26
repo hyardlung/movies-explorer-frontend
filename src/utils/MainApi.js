@@ -21,6 +21,20 @@ class MainApi {
     }).then(this._getResponse)
   }
 
+  // PATCH: редактирование данных профиля
+  editUserData({name, email}, token) {
+    return fetch(`${this._url}/users/me`, {
+      method: 'PATCH',
+      headers: {
+        ...this._headers,
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        name, email
+      })
+    }).then(this._getResponse)
+  }
+
   // POST: регистрация пользователя
   register({name, email, password}) {
     return fetch(`${this._url}/signup`, {
@@ -43,20 +57,6 @@ class MainApi {
       },
       body: JSON.stringify({
         email, password
-      })
-    }).then(this._getResponse)
-  }
-
-  // PATCH: редактирование данных профиля
-  editUserData({name, email}, token) {
-    return fetch(`${this._url}/users/me`, {
-      method: 'PATCH',
-      headers: {
-        ...this._headers,
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify({
-        name, email
       })
     }).then(this._getResponse)
   }
