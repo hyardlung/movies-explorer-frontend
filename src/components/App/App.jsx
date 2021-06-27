@@ -88,7 +88,7 @@ const App = () => {
     if (loggedIn) {
       const token = localStorage.getItem('token');
       Promise.all([mainApi.getUserData(token)])
-          .then(userData => {
+          .then(([userData]) => {
             setCurrentUser(userData);
           })
           .catch(err => console.log(err));

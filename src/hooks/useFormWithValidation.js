@@ -25,6 +25,7 @@ const useFormWithValidation = () => {
 
   return {
     values,
+    setValues,
     errors,
     isValid,
     handleChange,

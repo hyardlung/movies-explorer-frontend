@@ -13,7 +13,6 @@
   border-radius: var(--base-border-radius);
 }
 
-
 .search-film_position {
   margin: 70px 0;
 }
@@ -43,10 +42,11 @@
   color: var(--lightgray-text-color);
   background-color: transparent;
   border: none;
+  outline: none;
 }
 
 .search-film__input:focus {
-  outline: 1px solid var(--primary-accent-color);
+  border-bottom: 1px solid var(--secondary-accent-color);
 }
 
 .search-film__button {
