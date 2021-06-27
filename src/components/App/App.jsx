@@ -14,6 +14,7 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
 import {mainApi} from '../../utils/MainApi';
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 const App = () => {
   const history = useHistory();
@@ -100,32 +101,31 @@ const App = () => {
         <CurrentUserContext.Provider value={currentUser}>
           <Switch>
             <Route exact path="/">
-              <Header loggedIn={loggedIn} />
+              <Header loggedIn={loggedIn}/>
               <Main/>
               <Footer links={footerLinks}/>
             </Route>
-            <Route path="/movies">
-              <Header loggedIn={loggedIn}/>
-              <Movies/>
-              <Footer links={footerLinks}/>
-            </Route>
-            <Route path="/saved-movies">
-              <Header loggedIn={loggedIn}/>
-              <SavedMovies/>
-              <Footer links={footerLinks}/>
-            </Route>
             <Route path="/signup">
-              <Register onRegister={handleRegister} />
+              <Register onRegister={handleRegister}/>
             </Route>
             <Route path="/signin">
-              <Login onLogin={handleLogin} />
+              <Login onLogin={handleLogin}/>
             </Route>
-            <Route path="/profile">
-              <Header loggedIn={loggedIn}/>
-              <Profile onSignOut={handleSignOut}
-                       onUpdateUser={handleUpdateUser}
-              />
-            </Route>
+
+            <ProtectedRoute path="/movies"
+                            loggedIn={loggedIn}
+                            component={Movies}
+            />
+            <ProtectedRoute path="/saved-movies"
+                            loggedIn={loggedIn}
+                            component={SavedMovies}
+            />
+            <ProtectedRoute path="/profile"
+                            loggedIn={loggedIn}
+                            component={Profile}
+                            onSignOut={handleSignOut}
+                            onUpdateUser={handleUpdateUser}
+            />
             <Route path="*">
               <NotFound/>
             </Route>

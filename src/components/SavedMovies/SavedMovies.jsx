@@ -1,17 +1,25 @@
 import React from 'react';
-import './SavedMovies.css'
-import SearchFilm from "../SearchFilm/SearchFilm";
+import SearchFilm from '../SearchFilm/SearchFilm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import {savedMovies} from '../../config/links';
+import {footerLinks, savedMovies} from '../../config/links';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import './SavedMovies.css'
 
-const SavedMovies = () => {
+const SavedMovies = ({loggedIn}) => {
   return (
-      <section className="saved-movies">
-        <div className="saved-movies__container">
-          <SearchFilm />
-          <MoviesCardList links={savedMovies}/>
-        </div>
-      </section>
+      <>
+        <Header loggedIn={loggedIn} />
+        <section className="saved-movies">
+          <div className="saved-movies__container">
+            <SearchFilm />
+            <MoviesCardList links={savedMovies}/>
+          </div>
+        </section>
+        <Footer loggedIn={loggedIn}
+                links={footerLinks}
+        />
+      </>
   );
 }
 
