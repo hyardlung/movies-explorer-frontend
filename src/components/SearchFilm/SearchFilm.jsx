@@ -2,10 +2,23 @@ import React from 'react';
 import './SearchFilm.css'
 import ShortFilmFilter from '../ShortFilmFilter/ShortFilmFilter';
 
-const SearchFilm = ({className = ''}) => {
+const SearchFilm = ({
+                      searchInputValue,
+                      setSearchInputValue,
+                      // searchInputError,
+                      setSearchInputError,
+                      onSubmit,
+                      className
+}) => {
+  const handleChange = evt => {
+    setSearchInputValue(evt.target.value)
+  };
+
   return (
       <section className={`search-film search-film_position ${className}`}>
-        <form action="" className="search-film__form">
+        <form className="search-film__form"
+              onSubmit={onSubmit}
+        >
           <div className="search-film__input-wrapper">
             <svg className="search-film__icon"
                  width="13"
@@ -21,6 +34,9 @@ const SearchFilm = ({className = ''}) => {
                    placeholder="Фильм"
                    className="search-film__input"
                    required
+                   value={searchInputValue}
+                   onChange={handleChange}
+                   onClick={() => setSearchInputError('')}
             />
           </div>
           <button className="search-film__button">

@@ -9,7 +9,7 @@ const AuthForm = ({
     onLogin,
     authTextsParams
                   }) => {
-  const {values, errors, isValid, handleChange, resetForm} = useFormWithValidation();
+  const {values, errors, isValid, handleChange} = useFormWithValidation();
   const {name, email, password} = values;
   const pathname = useLocation().pathname;
 

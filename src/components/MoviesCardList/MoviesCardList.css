@@ -1,6 +1,11 @@
 .movies-card-list {
+  visibility: hidden;
   padding: 80px 0 62px;
   position: relative;
+}
+
+.movies-card-list_visible {
+  visibility: visible;
 }
 
 .movies-card-list__empty-text {

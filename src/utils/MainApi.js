@@ -61,13 +61,12 @@ class MainApi {
     }).then(this._getResponse)
   }
 
-  getContent(token) {
-    return fetch(`${this._url}/users/me`, {
+  getSearchedMovies() {
+    return fetch(`${this._url}/movies`, {
       headers: {
-        ...this._headers,
-        'Authorization': `Bearer ${token}`
+        ...this._headers
       }
-    })
+    }).then(this._getResponse)
   }
 }
 

@@ -7,6 +7,7 @@ import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Footer from '../Footer/Footer';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import {footerLinks} from '../../config/links';
 import {CurrentUserContext} from '../../contexts/currentUserContext';
 import Register from '../Register/Register';
@@ -14,7 +15,6 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
 import {mainApi} from '../../utils/MainApi';
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 const App = () => {
   const history = useHistory();
@@ -28,7 +28,7 @@ const App = () => {
   const tokenCheck = () => {
     const token = localStorage.getItem('token');
     if (token) {
-      mainApi.getContent(token)
+      mainApi.getUserData(token)
           .then(res => {
             if (res) setLoggedIn(true);
           })
@@ -87,9 +87,8 @@ const App = () => {
 
   useEffect(() => {
     if (loggedIn) {
-      const token = localStorage.getItem('token');
-      Promise.all([mainApi.getUserData(token)])
-          .then(([userData]) => {
+      mainApi.getUserData(getToken())
+          .then(userData => {
             setCurrentUser(userData);
           })
           .catch(err => console.log(err));
