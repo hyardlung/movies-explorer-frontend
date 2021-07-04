@@ -61,7 +61,7 @@ const App = () => {
 
   //обработчик выхода из аккаунта
   const handleSignOut = () => {
-    localStorage.removeItem('token');
+    localStorage.clear();
     history.push('/');
     setLoggedIn(false);
   };
