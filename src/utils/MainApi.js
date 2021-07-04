@@ -61,10 +61,11 @@ class MainApi {
     }).then(this._getResponse)
   }
 
-  getSearchedMovies() {
+  getSavedMovies(token) {
     return fetch(`${this._url}/movies`, {
       headers: {
-        ...this._headers
+        ...this._headers,
+        'Authorization': `Bearer ${token}`
       }
     }).then(this._getResponse)
   }
@@ -76,5 +77,6 @@ export const mainApi = new MainApi({
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
+    'Authorization': `${localStorage.getItem('token')}`
   }
 });

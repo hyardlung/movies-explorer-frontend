@@ -1,12 +1,14 @@
 import React from 'react';
-import './SearchFilm.css'
 import ShortFilmFilter from '../ShortFilmFilter/ShortFilmFilter';
+import './SearchFilm.css'
 
 const SearchFilm = ({
                       searchInputValue,
                       setSearchInputValue,
                       // searchInputError,
                       setSearchInputError,
+                      isShortMovies,
+                      setIsShortMovies,
                       onSubmit,
                       className
 }) => {
@@ -53,7 +55,9 @@ const SearchFilm = ({
         </button>
         </form>
         <div className="search-film__divider" />
-        <ShortFilmFilter />
+        <ShortFilmFilter isShortMovies={isShortMovies}
+                         setIsShortMovies={setIsShortMovies}
+        />
       </section>
   );
 }

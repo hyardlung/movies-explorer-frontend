@@ -43,6 +43,7 @@
   background-color: transparent;
   border: none;
   outline: none;
+  transition: all .3s;
 }
 
 .search-film__input:focus {

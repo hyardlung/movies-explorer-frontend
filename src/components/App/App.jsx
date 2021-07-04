@@ -1,11 +1,9 @@
 import {useEffect, useState} from 'react';
 import {Route, Switch, useHistory} from 'react-router-dom';
 
-import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
-import SavedMovies from '../SavedMovies/SavedMovies';
 import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import {footerLinks} from '../../config/links';
@@ -15,6 +13,7 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
 import {mainApi} from '../../utils/MainApi';
+import './App.css';
 
 const App = () => {
   const history = useHistory();
@@ -117,7 +116,7 @@ const App = () => {
             />
             <ProtectedRoute path="/saved-movies"
                             loggedIn={loggedIn}
-                            component={SavedMovies}
+                            component={Movies}
             />
             <ProtectedRoute path="/profile"
                             loggedIn={loggedIn}
