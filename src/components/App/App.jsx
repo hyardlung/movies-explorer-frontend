@@ -19,6 +19,7 @@ const App = () => {
   const history = useHistory();
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [preloaderVisibility, setPreloaderVisibility] = useState('');
 
   const getToken = () => {
     return localStorage.getItem('token');
@@ -37,6 +38,7 @@ const App = () => {
 
   // обработчик регистрации пользователя
   const handleRegister = ({name, email, password}) => {
+    setPreloaderVisibility('preloader_visible');
     return mainApi.register({name, email, password})
         .then(data => {
           if (data) {
@@ -45,18 +47,22 @@ const App = () => {
             history.push('/movies');
           }
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
+        .finally(() => setPreloaderVisibility(''));
   };
 
   // обработчик авторизации пользователя
   const handleLogin = ({email, password}) => {
+    setPreloaderVisibility('preloader_visible');
     mainApi.authorize({email, password})
         .then(data => {
           localStorage.setItem('token', data.token);
           setLoggedIn(true);
+          setCurrentUser(data);
           history.push('/movies');
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
+        .finally(() => setPreloaderVisibility(''));
   };
 
   //обработчик выхода из аккаунта
@@ -68,12 +74,14 @@ const App = () => {
 
   // обработчик редактирования профиля
   const handleUpdateUser = ({name, email}) => {
+    setPreloaderVisibility('preloader_visible');
     mainApi.editUserData({name, email}, getToken())
         .then(res => {
           setCurrentUser(res);
           alert('Данные успешно обновлены')
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
+        .finally(() => setPreloaderVisibility(''));
   };
 
   useEffect(() => {

@@ -1,3 +1,5 @@
+import {MAIN_API_URL, MOVIES_API_URL} from "./constants";
+
 class MainApi {
   constructor(params) {
     this._url = params.url;
@@ -61,11 +63,38 @@ class MainApi {
     }).then(this._getResponse)
   }
 
-  getSavedMovies(token) {
+  getSavedMovies() {
     return fetch(`${this._url}/movies`, {
+      headers: this._headers,
+    }).then(this._getResponse)
+  }
+
+  addMovieToFavorites(movie) {
+    return fetch(`${this._url}/movies`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: `${MOVIES_API_URL}${movie.image.url}`,
+        thumbnail: `${MOVIES_API_URL}${movie.image.url}`,
+        trailer: movie.trailerLink,
+        movieId: movie.id.toString(),
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN
+      })
+    }).then(this._getResponse)
+  }
+
+  removeMovieFromFavorites(movieId) {
+    return fetch(`${this._url}/movies/${movieId}`, {
+      method: 'DELETE',
       headers: {
         ...this._headers,
-        'Authorization': `Bearer ${token}`
+        // 'Authorization': `Bearer ${token}`
       }
     }).then(this._getResponse)
   }
@@ -73,10 +102,10 @@ class MainApi {
 
 export const mainApi = new MainApi({
   url: 'http://localhost:3005', // для локальной разработки
-  // url: 'https://hyardlung-movies-explorer.nomoredomains.icu',   // для удалённой разработки
+  // url: `${MAIN_API_URL}`,   // для удалённой разработки
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization': `${localStorage.getItem('token')}`
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
   }
 });

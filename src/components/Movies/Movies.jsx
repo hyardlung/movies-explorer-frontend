@@ -10,7 +10,7 @@ import shortMoviesHandler from '../../utils/shortMoviesHandler';
 import {numberCardsFromScreenSize, screenSizeDefinition} from '../../utils/screenDefinition';
 import {moviesApi} from '../../utils/MoviesApi';
 import {mainApi} from'../../utils/MainApi';
-import {DESKTOP_RESOLUTION, MOBILE_RESOLUTION, SHORT_MOVIE_DURATION, TABLET_RESOLUTION} from '../../utils/constants';
+import {DESKTOP_RESOLUTION, MOBILE_RESOLUTION, TABLET_RESOLUTION, SHORT_MOVIE_DURATION} from '../../utils/constants';
 import './Movies.css';
 
 const Movies = ({loggedIn}) => {
@@ -25,10 +25,9 @@ const Movies = ({loggedIn}) => {
   const [moreButtonVisibility, setMoreButtonVisibility] = useState('movies-card-list__load-more_hidden');
   const [loadMoreClickCounter, setLoadMoreClickCounter] = useState(1);
   const [isShortMovies, setIsShortMovies] = useState(false);
-  const token = localStorage.getItem('token');
 
   useEffect(() => {
-    mainApi.getSavedMovies(token)
+    mainApi.getSavedMovies()
         .then(res => {
           if (res) setSavedMovies(res);
         })
@@ -115,6 +114,24 @@ const Movies = ({loggedIn}) => {
     }
   };
 
+
+  const addMovieToFavorites = movie => {
+    mainApi.addMovieToFavorites(movie)
+        .then(movieData => {
+          setSavedMovies([movieData.data, ...savedMovies])
+        })
+        .catch(err => console.log(err));
+  };
+
+  const removeMovieFromFavorites = movieId => {
+    mainApi.removeMovieFromFavorites(movieId)
+        .then(() => {
+          const updatedSavedMovies = savedMovies.filter(movie => movie._id !== movieId);
+          setSavedMovies(updatedSavedMovies);
+        })
+        .catch(err => console.log(err));
+  };
+
   return (
       <>
         <Preloader preloaderVisibility={preloaderVisibility} />
@@ -140,6 +157,8 @@ const Movies = ({loggedIn}) => {
                             moreButtonVisibility={moreButtonVisibility}
                             setMoreButtonVisibility={setMoreButtonVisibility}
                             loadMoreMoviesHandler={loadMoreMoviesHandler}
+                            addMovieToFavorites={addMovieToFavorites}
+                            removeMovieFromFavorites={removeMovieFromFavorites}
                             loggedIn={loggedIn}
             />
           </div>

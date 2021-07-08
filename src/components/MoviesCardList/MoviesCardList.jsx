@@ -14,6 +14,8 @@ const MoviesCardList = ({
                           moreButtonVisibility,
                           setMoreButtonVisibility,
                           loadMoreMoviesHandler,
+                          addMovieToFavorites,
+                          removeMovieFromFavorites,
                           loggedIn
                         }) => {
   const {pathname} = useLocation();
@@ -23,10 +25,10 @@ const MoviesCardList = ({
   const calculateMovieDuration = valueInMinutes => {
     const hours = Math.floor(valueInMinutes / 60);
     const minutes = valueInMinutes % 60;
-    let durationInHours = `${hours}ч ${minutes}м`;
-    if (hours === 0) durationInHours = `${minutes}м`;
-    if (minutes === 0) durationInHours = `${hours}ч`;
-    return durationInHours;
+    let calculatedDuration = `${hours}ч ${minutes}м`;
+    if (hours === 0) calculatedDuration = `${minutes}м`;
+    if (minutes === 0) calculatedDuration = `${hours}ч`;
+    return calculatedDuration;
   }
 
   useEffect(() => {
@@ -44,7 +46,6 @@ const MoviesCardList = ({
       setMoreButtonVisibility('movies-card-list__load-more_hidden');
       setEmptyListNoticeVisibility('movies-card-list__empty-text_hidden');
     } else {
-      // setMoreButtonVisibility('');
       setEmptyListNoticeVisibility('');
     }
     if (loggedIn && foundMovies && JSON.parse(foundMovies).length > 0) setMoviesVisibility('movies-card-list_visible');
@@ -83,6 +84,9 @@ const MoviesCardList = ({
                               ? `https://api.nomoreparties.co${movie.image.url}`
                               : 'https://imgur.com/j6h8g1O'
                           }
+                          savedMovies={savedMovies}
+                          addMovieToFavorites={addMovieToFavorites}
+                          removeMovieFromFavorites={removeMovieFromFavorites}
                       />
                   ))
               )
@@ -90,14 +94,17 @@ const MoviesCardList = ({
                   savedMovies.map(movie => (
                       <MoviesCard
                           movie={movie}
-                          key={movie.id}
+                          key={movie._id}
                           movieTitle={movie.nameRU}
                           movieDuration={calculateMovieDuration(movie.duration)}
                           movieTrailer={movie.trailerLink}
                           movieImage={movie.image
-                              ? `https://api.nomoreparties.co${movie.image.url}`
+                              ? movie.image
                               : 'https://imgur.com/j6h8g1O'
                           }
+                          savedMovies={savedMovies}
+                          addMovieToFavorites={addMovieToFavorites}
+                          removeMovieFromFavorites={removeMovieFromFavorites}
                       />
                   ))
               )
