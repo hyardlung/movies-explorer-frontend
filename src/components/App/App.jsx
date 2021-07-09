@@ -19,6 +19,8 @@ const App = () => {
   const history = useHistory();
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [isUpdateSuccess, setIsUpdateSuccess] = useState(false);
+  const [isUpdateFail, setIsUpdateFail] = useState(false);
   const [preloaderVisibility, setPreloaderVisibility] = useState('');
 
   const getToken = () => {
@@ -78,9 +80,15 @@ const App = () => {
     mainApi.editUserData({name, email}, getToken())
         .then(res => {
           setCurrentUser(res);
-          alert('Данные успешно обновлены')
+          setIsUpdateFail(false);
+          setIsUpdateSuccess(true);
+          setTimeout(() => setIsUpdateSuccess(false), 3000);
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          setIsUpdateFail(true);
+          setTimeout(() => setIsUpdateFail(false), 3000);
+          console.log(err)
+        })
         .finally(() => setPreloaderVisibility(''));
   };
 
@@ -127,6 +135,8 @@ const App = () => {
                             component={Profile}
                             onSignOut={handleSignOut}
                             onUpdateUser={handleUpdateUser}
+                            isUpdateSuccess={isUpdateSuccess}
+                            isUpdateFail={isUpdateFail}
             />
             <Route path="*">
               <NotFound/>

@@ -4,8 +4,15 @@ import useFormWithValidation from '../../hooks/useFormWithValidation';
 import './Profile.css';
 import Header from "../Header/Header";
 
-const Profile = ({loggedIn, onUpdateUser, onSignOut}) => {
+const Profile = ({loggedIn,
+                   onUpdateUser,
+                   onSignOut,
+                   isUpdateSuccess,
+                   isUpdateFail
+}) => {
   const currentUser = useContext(CurrentUserContext);
+
+
   const {values, setValues, handleChange, errors, isValid} = useFormWithValidation();
   const {name, email} = values;
 
@@ -68,6 +75,8 @@ const Profile = ({loggedIn, onUpdateUser, onSignOut}) => {
                 {errors.email || ''}
               </span>
               </label>
+              {isUpdateSuccess && <p className="profile__update-message profile__update-message_success">Редактирование завершено!</p>}
+              {isUpdateFail && <p className="profile__update-message profile__update-message_fail">Ошибка при редактировании профиля</p>}
               <div className="profile__control">
                 <button type="submit"
                         className={`

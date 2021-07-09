@@ -87,6 +87,7 @@ const Movies = ({loggedIn}) => {
 
     if (pathname === '/movies') {
       if (!localStorage.getItem('movies')) {
+        setPreloaderVisibility('preloader_visible');
         moviesApi.getMovies()
             .then(movies => {
               localStorage.setItem('movies', JSON.stringify(movies));
