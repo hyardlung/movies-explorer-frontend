@@ -81,6 +81,7 @@ const Movies = ({loggedIn}) => {
 
   const searchMovieHandler = evt => {
     evt.preventDefault();
+
     if (searchInputValue === '') return setSearchInputError('Введите ключевое слово');
     setPreloaderVisibility('preloader_visible');
     setMoviesVisibility('');
@@ -114,7 +115,6 @@ const Movies = ({loggedIn}) => {
       setPreloaderVisibility('');
     }
   };
-
 
   const addMovieToFavorites = movie => {
     mainApi.addMovieToFavorites(movie)
