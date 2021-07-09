@@ -89,10 +89,6 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (loggedIn) history.push('/movies');
-  }, [history, loggedIn]);
-
-  useEffect(() => {
     if (loggedIn) {
       mainApi.getUserData(getToken())
           .then(userData => {
