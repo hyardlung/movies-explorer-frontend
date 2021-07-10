@@ -45,7 +45,6 @@ const App = () => {
         .then(data => {
           if (data) {
             handleLogin({email, password});
-            alert('Вы успешно зарегистрировались!');
             history.push('/movies');
           }
         })
