@@ -100,8 +100,8 @@ class MainApi {
 }
 
 export const mainApi = new MainApi({
-  // url: 'http://localhost:3005', // для локальной разработки
-  url: `${MAIN_API_URL}`,   // для удалённой разработки
+  url: 'http://localhost:3005', // для локальной разработки
+  // url: `${MAIN_API_URL}`,   // для удалённой разработки
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',

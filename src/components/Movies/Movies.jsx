@@ -72,7 +72,7 @@ const Movies = ({loggedIn}) => {
   };
 
   const filterMoviesByKeyword = movies => {
-    const filteredMovies = movies.filter(movie => movie.nameRU.toLowerCase().includes(searchInputValue));
+    const filteredMovies = movies.filter(movie => movie.nameRU.toLowerCase().includes(searchInputValue.toLowerCase()));
     setFoundMovies(() => {
       localStorage.setItem('foundMovies', JSON.stringify(filteredMovies));
       return filteredMovies;
@@ -110,7 +110,7 @@ const Movies = ({loggedIn}) => {
       setMoreButtonVisibility('');
 
     } else {
-      setSavedMovies(savedMovies.filter(movie => movie.nameRU.includes(searchInputValue)));
+      setSavedMovies(savedMovies.filter(movie => movie.nameRU.toLowerCase().includes(searchInputValue.toLowerCase())));
       setMoviesVisibility('movies-card-list_visible');
       setPreloaderVisibility('');
     }
