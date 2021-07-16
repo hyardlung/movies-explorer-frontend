@@ -10,14 +10,13 @@ import shortMoviesHandler from '../../utils/shortMoviesHandler';
 import {numberCardsFromScreenSize, screenSizeDefinition} from '../../utils/screenDefinition';
 import {moviesApi} from '../../utils/MoviesApi';
 import {mainApi} from'../../utils/MainApi';
-import {DESKTOP_RESOLUTION, MOBILE_RESOLUTION, TABLET_RESOLUTION, SHORT_MOVIE_DURATION} from '../../utils/constants';
+import {MOBILE_RESOLUTION, TABLET_RESOLUTION, SHORT_MOVIE_DURATION} from '../../utils/constants';
 import './Movies.css';
 
 const Movies = ({loggedIn}) => {
   const {pathname} = useLocation();
   const [foundMovies, setFoundMovies] = useState([]);
   const [renderedMoviesList, setRenderedMoviesList] = useState([]);
-  const [searchInputValue, setSearchInputValue] = useState('');
   const [searchInputError, setSearchInputError] = useState('');
   const [moviesVisibility, setMoviesVisibility] = useState('');
   const [preloaderVisibility, setPreloaderVisibility] = useState('');
@@ -59,9 +58,8 @@ const Movies = ({loggedIn}) => {
 
   const countInitialCards = () => {
     const viewportWidth = screenSizeDefinition();
-    if (viewportWidth >= DESKTOP_RESOLUTION
-        || (viewportWidth > TABLET_RESOLUTION && viewportWidth < DESKTOP_RESOLUTION)) return 16;
-    if (viewportWidth >= MOBILE_RESOLUTION && viewportWidth < TABLET_RESOLUTION)return 8;
+    if (viewportWidth >= TABLET_RESOLUTION) return 16;
+    if (viewportWidth > MOBILE_RESOLUTION && viewportWidth <= TABLET_RESOLUTION) return 8;
     return 5;
   }
 
@@ -71,18 +69,16 @@ const Movies = ({loggedIn}) => {
     setLoadMoreClickCounter(loadMoreClickCounter + 1);
   };
 
-  const filterMoviesByKeyword = movies => {
-    const filteredMovies = movies.filter(movie => movie.nameRU.toLowerCase().includes(searchInputValue.toLowerCase()));
+  const filterMoviesByKeyword = (movies, query) => {
+    const filteredMovies = movies.filter(movie => movie.nameRU.toLowerCase().includes(query.toLowerCase()));
     setFoundMovies(() => {
       localStorage.setItem('foundMovies', JSON.stringify(filteredMovies));
       return filteredMovies;
     });
   };
 
-  const searchMovieHandler = evt => {
-    evt.preventDefault();
-
-    if (searchInputValue === '') return setSearchInputError('Введите ключевое слово');
+  const searchMovieHandler = query => {
+    if (query === '') return setSearchInputError('Введите ключевое слово');
     setPreloaderVisibility('preloader_visible');
     setMoviesVisibility('');
 
@@ -92,7 +88,7 @@ const Movies = ({loggedIn}) => {
         moviesApi.getMovies()
             .then(movies => {
               localStorage.setItem('movies', JSON.stringify(movies));
-              filterMoviesByKeyword(JSON.parse(localStorage.movies));
+              filterMoviesByKeyword(JSON.parse(localStorage.movies), query);
               setPreloaderVisibility('');
               setMoviesVisibility('movies-card-list_visible');
               setMoreButtonVisibility('');
@@ -103,14 +99,15 @@ const Movies = ({loggedIn}) => {
 
       filterMoviesByKeyword(localStorage.getItem('movies')
           ? JSON.parse(localStorage.movies)
-          : []
+          : [],
+          query
       );
       setPreloaderVisibility('');
       setMoviesVisibility('movies-card-list_visible');
       setMoreButtonVisibility('');
 
     } else {
-      setSavedMovies(savedMovies.filter(movie => movie.nameRU.toLowerCase().includes(searchInputValue.toLowerCase())));
+      setSavedMovies(savedMovies.filter(movie => movie.nameRU.toLowerCase().includes(query.toLowerCase())));
       setMoviesVisibility('movies-card-list_visible');
       setPreloaderVisibility('');
     }
@@ -139,9 +136,7 @@ const Movies = ({loggedIn}) => {
         <Header loggedIn={loggedIn} />
         <section className="movies">
           <div className="movies__container">
-            <SearchFilm searchInputValue={searchInputValue}
-                        setSearchInputValue={setSearchInputValue}
-                        searchInputError={searchInputError}
+            <SearchFilm searchInputError={searchInputError}
                         setSearchInputError={setSearchInputError}
                         isShortMovies={isShortMovies}
                         setIsShortMovies={setIsShortMovies}
