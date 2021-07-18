@@ -102,8 +102,9 @@ const App = () => {
             setCurrentUser(userData);
           })
           .catch(err => console.log(err));
+      history.push('/movies');
     }
-  }, [loggedIn]);
+  }, [history, loggedIn]);
 
   return (
       <div className="app">

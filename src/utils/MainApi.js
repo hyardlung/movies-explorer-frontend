@@ -92,9 +92,7 @@ class MainApi {
   removeMovieFromFavorites(movieId) {
     return fetch(`${this._url}/movies/${movieId}`, {
       method: 'DELETE',
-      headers: {
-        ...this._headers,
-      }
+      headers: this._headers,
     }).then(this._getResponse)
   }
 }

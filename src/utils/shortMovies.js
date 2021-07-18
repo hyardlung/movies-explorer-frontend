@@ -1,7 +1,7 @@
 import {SHORT_MOVIE_DURATION} from './constants';
 
-const shortMoviesHandler = movies => {
+const shortMovies = movies => {
   return movies.filter(movie => movie.duration <= SHORT_MOVIE_DURATION);
 };
 
-export default shortMoviesHandler;
+export default shortMovies;

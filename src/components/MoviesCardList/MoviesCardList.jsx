@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useLocation} from 'react-router-dom';
 import MoviesCard from '../MoviesCard/MoviesCard';
+import calculateMovieDuration from '../../utils/calculateMoviesDuration';
 import './MoviesCardList.css'
 
 const MoviesCardList = ({
@@ -11,9 +12,9 @@ const MoviesCardList = ({
                           moviesVisibility,
                           setMoviesVisibility,
                           countInitialCards,
-                          moreButtonVisibility,
+                          moviesCount,
+                          setMoviesCount,
                           setMoreButtonVisibility,
-                          loadMoreMoviesHandler,
                           addMovieToFavorites,
                           removeMovieFromFavorites,
                           loggedIn
@@ -22,17 +23,8 @@ const MoviesCardList = ({
   const foundMovies = localStorage.getItem('foundMovies');
   const [emptyListNoticeVisibility, setEmptyListNoticeVisibility] = useState('');
 
-  const calculateMovieDuration = valueInMinutes => {
-    const hours = Math.floor(valueInMinutes / 60);
-    const minutes = valueInMinutes % 60;
-    let calculatedDuration = `${hours}ч ${minutes}м`;
-    if (hours === 0) calculatedDuration = `${minutes}м`;
-    if (minutes === 0) calculatedDuration = `${hours}ч`;
-    return calculatedDuration;
-  }
-
   useEffect(() => {
-    if (movies.length > renderedMoviesList.length) {
+    if (movies.length >= renderedMoviesList.length) {
       setMoreButtonVisibility('')
     } else {
       setMoreButtonVisibility('movies-card-list__load-more_hidden')
@@ -73,7 +65,7 @@ const MoviesCardList = ({
         <ul className="movies-card-list__ul">
           {pathname === '/movies'
               ? (
-                  renderedMoviesList.map(movie => (
+                  renderedMoviesList.slice(0, moviesCount.startCards).map(movie => (
                       <MoviesCard
                           movie={movie}
                           key={movie.id}
@@ -114,11 +106,11 @@ const MoviesCardList = ({
           movies.length > renderedMoviesList.length || pathname !== '/saved-movies'
               ? (
                   <button type="button"
-                          onClick={loadMoreMoviesHandler}
-                          className={`movies-card-list__load-more ${moreButtonVisibility}`}
-                  >
-                    <span className="movies-card-list__more-caption">Ещё</span>
-                  </button>
+                          onClick={() => {
+                            setMoviesCount({ ...moviesCount, startCards: moviesCount.startCards + moviesCount.moreCards })
+                          }}
+                          className={`movies-card-list__load-more movies-card-list__more-caption ${moviesCount.startCards < movies.length? "": "movies-card-list__load-more_hidden"}`}
+                  >Ещё</button>
               )
               : ''
         }

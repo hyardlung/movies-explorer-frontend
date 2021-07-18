@@ -6,8 +6,8 @@ import {footerLinks} from '../../config/links';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Preloader from '../Preloader/Preloader';
-import shortMoviesHandler from '../../utils/shortMoviesHandler';
-import {numberCardsFromScreenSize, screenSizeDefinition} from '../../utils/screenDefinition';
+import shortMovies from '../../utils/shortMovies';
+import {numberCardsFromScreenSize} from '../../utils/screenDefinition';
 import {moviesApi} from '../../utils/MoviesApi';
 import {mainApi} from'../../utils/MainApi';
 import {MOBILE_RESOLUTION, TABLET_RESOLUTION, SHORT_MOVIE_DURATION} from '../../utils/constants';
@@ -24,6 +24,7 @@ const Movies = ({loggedIn}) => {
   const [moreButtonVisibility, setMoreButtonVisibility] = useState('movies-card-list__load-more_hidden');
   const [loadMoreClickCounter, setLoadMoreClickCounter] = useState(1);
   const [isShortMovies, setIsShortMovies] = useState(false);
+  const [moviesCount, setMoviesCount] = useState({startCards: 0, rowCards: 0, moreCards: 0});
 
   useEffect(() => {
     mainApi.getSavedMovies()
@@ -36,9 +37,13 @@ const Movies = ({loggedIn}) => {
 
   const filterShortMovies = movies => {
     if (isShortMovies) {
-      return shortMoviesHandler(movies);
+      return shortMovies(movies);
     }
     return movies.filter(movie => movie.duration >= SHORT_MOVIE_DURATION);
+  }
+
+  function handleShortMovies() {
+    setIsShortMovies(!isShortMovies)
   }
 
   const processedMovies = useMemo(
@@ -56,15 +61,26 @@ const Movies = ({loggedIn}) => {
       [isShortMovies, savedMovies]
   );
 
-  const countInitialCards = () => {
-    const viewportWidth = screenSizeDefinition();
-    if (viewportWidth >= TABLET_RESOLUTION) return 16;
-    if (viewportWidth > MOBILE_RESOLUTION && viewportWidth <= TABLET_RESOLUTION) return 8;
-    return 5;
+  useEffect(() => {
+    if (processedMovies.length <= processedRenderedMovies.length) {
+      setMoreButtonVisibility('movies-card-list__load-more_hidden');
+    }
+  }, [processedMovies, processedRenderedMovies]);
+
+
+  function renderSpecificCardsCount() {
+    const viewportWidth = window.screen.width;
+    if( viewportWidth < MOBILE_RESOLUTION ){
+      setMoviesCount({startCards: 5, rowCards: 1, moreCards: 2})
+    } else if (viewportWidth < TABLET_RESOLUTION ){
+      setMoviesCount({startCards: 8, rowCards: 2, moreCards: 2})
+    } else {
+      setMoviesCount({startCards: 16, rowCards: 4, moreCards: 4})
+    }
   }
 
   const loadMoreMoviesHandler = () => {
-    const MoviesCards = countInitialCards();
+    const MoviesCards = renderSpecificCardsCount();
     setRenderedMoviesList(processedMovies.slice(0, MoviesCards + loadMoreClickCounter * numberCardsFromScreenSize()));
     setLoadMoreClickCounter(loadMoreClickCounter + 1);
   };
@@ -139,23 +155,26 @@ const Movies = ({loggedIn}) => {
             <SearchFilm searchInputError={searchInputError}
                         setSearchInputError={setSearchInputError}
                         isShortMovies={isShortMovies}
-                        setIsShortMovies={setIsShortMovies}
+                        setIsShortMovies={handleShortMovies}
                         onSubmit={searchMovieHandler}
                         className={'movies__search-film'}
             />
-            <MoviesCardList movies={processedMovies}
-                            savedMovies={processedSavedMovies}
-                            renderedMoviesList={processedRenderedMovies}
-                            setRenderedMoviesList={setRenderedMoviesList}
-                            moviesVisibility={moviesVisibility}
-                            setMoviesVisibility={setMoviesVisibility}
-                            countInitialCards={countInitialCards}
-                            moreButtonVisibility={moreButtonVisibility}
-                            setMoreButtonVisibility={setMoreButtonVisibility}
-                            loadMoreMoviesHandler={loadMoreMoviesHandler}
-                            addMovieToFavorites={addMovieToFavorites}
-                            removeMovieFromFavorites={removeMovieFromFavorites}
-                            loggedIn={loggedIn}
+            <MoviesCardList
+                movies={processedMovies}
+                savedMovies={processedSavedMovies}
+                renderedMoviesList={processedRenderedMovies}
+                setRenderedMoviesList={setRenderedMoviesList}
+                moviesVisibility={moviesVisibility}
+                setMoviesVisibility={setMoviesVisibility}
+                countInitialCards={renderSpecificCardsCount}
+                setMoviesCount={setMoviesCount}
+                moviesCount={moviesCount}
+                moreButtonVisibility={moreButtonVisibility}
+                setMoreButtonVisibility={setMoreButtonVisibility}
+                loadMoreMoviesHandler={loadMoreMoviesHandler}
+                addMovieToFavorites={addMovieToFavorites}
+                removeMovieFromFavorites={removeMovieFromFavorites}
+                loggedIn={loggedIn}
             />
           </div>
         </section>
